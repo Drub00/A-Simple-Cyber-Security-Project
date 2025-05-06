@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Encryption Tool</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>How It Works</h2>
+            </div>
+            <div class="explanation-container" id="explanation-content">
+                <p>Select an encryption method to see how it works.</p>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <header>
+                <h1>Advanced Encryption Tool</h1>
+                <p class="subtitle">Secure your messages with multiple encryption methods</p>
+            </header>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="encrypt">Encrypt</button>
+                <button class="tab-btn" data-tab="decrypt">Decrypt</button>
+            </div>
+
+            <div class="tab-content active" id="encrypt-tab">
+                <div class="input-section">
+                    <label for="input-message">Message to Encrypt</label>
+                    <textarea id="input-message" placeholder="Enter your message here..."></textarea>
+                </div>
+
+                <div class="method-section">
+                    <label for="encryption-method">Encryption Method</label>
+                    <select id="encryption-method">
+                        <option value="aes">AES (Symmetric)</option>
+                        <option value="rsa">RSA (Asymmetric)</option>
+                        <option value="caesar">Caesar Cipher</option>
+                    </select>
+                </div>
+
+                <div class="key-section" id="rsa-key-section">
+                    <h3>RSA Public Key</h3>
+                    <div class="key-box">
+                        <label>Recipient's Public Key (e, n)</label>
+                        <textarea id="rsa-public-key-input" placeholder="Paste recipient's public key (e,n) here"></textarea>
+                    </div>
+                </div>
+
+                <div class="key-section" id="symmetric-key-section">
+                    <label for="encryption-key">Encryption Key</label>
+                    <input type="text" id="encryption-key" placeholder="Enter your key">
+                </div>
+
+                <div class="action-buttons">
+                    <button id="encrypt-btn" class="primary-btn">Encrypt Message</button>
+                    <button id="clear-encrypt-btn" class="secondary-btn">Clear</button>
+                </div>
+
+                <div class="output-section">
+                    <div class="output-header">
+                        <label>Encrypted Result</label>
+                        <button id="copy-encrypted" class="copy-btn">Copy</button>
+                    </div>
+                    <div id="encrypted-output" class="output-box"></div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="decrypt-tab">
+                <div class="input-section">
+                    <label for="encrypted-message">Encrypted Message</label>
+                    <textarea id="encrypted-message" placeholder="Paste encrypted message here..."></textarea>
+                </div>
+
+                <div class="method-section">
+                    <label for="decryption-method">Decryption Method</label>
+                    <select id="decryption-method">
+                        <option value="aes">AES (Symmetric)</option>
+                        <option value="rsa">RSA (Asymmetric)</option>
+                        <option value="caesar">Caesar Cipher</option>
+                    </select>
+                </div>
+
+                <div class="key-section" id="decrypt-rsa-key-section">
+                    <h3>RSA Keys</h3>
+                    <div class="key-pair">
+                        <div class="key-box">
+                            <label>Your Private Key (d, n)</label>
+                            <textarea id="rsa-private-key-input" placeholder="Paste your private key (d,n) here"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-section" id="decrypt-symmetric-key-section">
+                    <label for="decryption-key">Decryption Key</label>
+                    <input type="text" id="decryption-key" placeholder="Enter decryption key">
+                </div>
+
+                <div class="action-buttons">
+                    <button id="decrypt-btn" class="primary-btn">Decrypt Message</button>
+                    <button id="clear-decrypt-btn" class="secondary-btn">Clear</button>
+                </div>
+
+                <div class="output-section">
+                    <div class="output-header">
+                        <label>Decrypted Result</label>
+                        <button id="copy-decrypted" class="copy-btn">Copy</button>
+                    </div>
+                    <div id="decrypted-output" class="output-box"></div>
+                </div>
+            </div>
+
+            <div class="key-generation-section">
+                <h3>Generate RSA Key Pair</h3>
+                <button id="generate-keys-btn" class="primary-btn">Generate New Key Pair</button>
+                <div class="key-pair">
+                    <div class="key-box">
+                        <label>Public Key (e, n)</label>
+                        <div id="public-key" class="key-value"></div>
+                        <button class="copy-btn" data-target="public-key">Copy</button>
+                    </div>
+                    <div class="key-box">
+                        <label>Private Key (d, n)</label>
+                        <div id="private-key" class="key-value"></div>
+                        <button class="copy-btn" data-target="private-key">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <p>All encryption/decryption happens in your browser. No data is sent to servers.</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
